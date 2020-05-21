@@ -1,7 +1,8 @@
 module.exports = () => {
   return {
     dir: {
-      input: "src",
+      input: "src/site",
+      includes: "_includes",
       output: "dist",
     },
   };
