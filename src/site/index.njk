@@ -8,9 +8,8 @@ layout: layouts/base.njk
 
 <ul>
   {% for activity in activities %}
-    {{ activity | log }}
     <li>
-      <a href="{{ activity.url }}">{{ activity.url }}</a>
+      <a href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
     </li>
   {% endfor %}
 </ul>

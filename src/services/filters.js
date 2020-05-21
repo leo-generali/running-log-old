@@ -1,9 +1,9 @@
 const Activity = require("../models/activity");
 
-function create(collection) {
+function createActivities(collection) {
   return collection.map((activity) => {
     return new Activity(activity);
   });
 }
 
-module.exports = { create };
+module.exports = { createActivities };

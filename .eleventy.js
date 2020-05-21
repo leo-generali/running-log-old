@@ -1,7 +1,8 @@
-const activityService = require("./src/services/activity");
+const filters = require("./src/services/filters");
 
 module.exports = (config) => {
-  config.addFilter("createActivities", activityService.create);
+  // Custom Filters
+  config.addFilter("createActivities", filters.createActivities);
 
   // Custom Watch Targets
   config.addWatchTarget("./src/styles/**/*.css");
