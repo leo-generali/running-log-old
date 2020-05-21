@@ -2,7 +2,6 @@
 
 <ul>
   {% for activity in collections.activity %}
-    {{ activity | log }}
     <li>
       <a href="{{ activity.url }}">{{ activity.data.date.toUTCString() }}</a>
     </li>
