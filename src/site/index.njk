@@ -1,9 +1,12 @@
+{% set activities = collections.activity | createActivities %}
+
 <h1>Runs:</h1>
 
 <ul>
-  {% for activity in collections.activity %}
+  {% for activity in activities %}
+    {{ activity | log }}
     <li>
-      <a href="{{ activity.url }}">{{ activity.data.date.toUTCString() }}</a>
+      <a href="{{ activity.url }}">{{ activity.url }}</a>
     </li>
   {% endfor %}
 </ul>
