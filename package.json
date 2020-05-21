@@ -17,6 +17,8 @@
     "markdown-it": "^11.0.0",
     "markdown-it-front-matter": "^0.2.1",
     "moment": "^2.26.0",
-    "rimraf": "^3.0.2"
+    "postcss": "^7.0.30",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^1.4.6"
   }
 }

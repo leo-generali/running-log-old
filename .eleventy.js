@@ -4,6 +4,7 @@ module.exports = (config) => {
   config.addFilter("createActivities", activityService.create);
 
   // Custom Watch Targets
+  config.addWatchTarget("./src/styles/**/*.css");
   config.addWatchTarget("./src/models/**/*.js");
   config.addWatchTarget("./src/services/**/*.js");
 
