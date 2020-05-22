@@ -3,6 +3,7 @@ const filters = require("./src/services/filters");
 module.exports = (config) => {
   // Custom Filters
   config.addFilter("createActivities", filters.createActivities);
+  config.addFilter("formatSeconds", filters.formatSeconds);
 
   // Custom Watch Targets
   config.addWatchTarget("./src/styles/**/*.css");

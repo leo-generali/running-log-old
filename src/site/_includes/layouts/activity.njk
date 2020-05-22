@@ -2,5 +2,16 @@
 layout: layouts/base.njk
 ---
 
+<ul>
+  <li>
+    {{ time | formatSeconds }} minutes
+  </li>
+  <li>
+    {{ distance }} miles
+  </li>
+  <li>
+    {{ (time / distance) | formatSeconds }} pace
+  </li>
+</ul>
 <h1>{{ title or "Activity" }}</h1>
 {{ content | safe }}
