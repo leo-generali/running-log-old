@@ -3,6 +3,7 @@ layout: layouts/base.njk
 ---
 
 <ul>
+  
   <li>
     {{ time | formatSeconds }} minutes
   </li>
@@ -10,7 +11,7 @@ layout: layouts/base.njk
     {{ distance }} miles
   </li>
   <li>
-    {{ (time / distance) | formatSeconds }} pace
+    {{ formatted.pace }} pace
   </li>
 </ul>
 <h1>{{ title or "Activity" }}</h1>

@@ -6,8 +6,4 @@ function createActivities(collection) {
   });
 }
 
-function formatSeconds(seconds) {
-  return new Date(seconds * 1000).toISOString().substr(14, 5);
-}
-
-module.exports = { createActivities, formatSeconds };
+module.exports = { createActivities };
