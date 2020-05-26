@@ -3,7 +3,7 @@
 <head>
   <meta charset='UTF-8'>
   <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-  <title>{{ title or metadata.title }}</title>
+  <title>{{ title + ' | ' + metadata.title or metadata.title }}</title>
   <style>{{ css | safe }}</style>
 </head>
 <body class='text-gray-900 leading-normal bg-gray-100 flex flex-col min-h-screen'>
