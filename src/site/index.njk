@@ -3,9 +3,6 @@ layout: layouts/base.njk
 ---
 
 {% set activities = collections.activity | createActivities %}
-
-<h1>Runs:</h1>
-
 {% set currentMonthYearBlock = null %}
 
 {% for activity in activities %}
@@ -20,7 +17,18 @@ layout: layouts/base.njk
 
     <section>
     <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
-    <span>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock) }} miles</span>
+    <aside>
+      <p>Month Details:</p>
+      <ul>
+        <li>
+          {{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'distance') }} miles
+        </li>
+        <li>
+          {{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'time') | formatSeconds }}
+        </li>
+      </ul>
+    </aside>
+    
   
     <ul>
   {% endif %}

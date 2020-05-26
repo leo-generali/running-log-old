@@ -4,6 +4,7 @@ module.exports = (config) => {
   // Custom Filters
   config.addFilter("createActivities", filters.createActivities);
   config.addFilter("getDataFromGroup", filters.getDataFromGroup);
+  config.addFilter("formatSeconds", filters.formatSeconds);
 
   // Custom Watch Targets
   config.addWatchTarget("./src/styles/**/*.css");

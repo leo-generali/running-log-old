@@ -1,4 +1,5 @@
 const Activity = require("../models/activity");
+const moment = require("moment");
 
 function createActivities(collection) {
   return collection
@@ -10,16 +11,21 @@ function createActivities(collection) {
     });
 }
 
-function getDataFromGroup(collection, formatToken, timePeriod) {
+function getDataFromGroup(collection, formatToken, timePeriod, data) {
   let sum = 0;
 
   collection.forEach((activity) => {
     if (activity.date.format(formatToken) == timePeriod) {
-      sum = sum + activity.distance;
+      sum = sum + activity[data];
     }
   });
 
   return sum.toFixed(2);
 }
 
-module.exports = { createActivities, getDataFromGroup };
+function formatSeconds(seconds) {
+  const token = seconds >= 3600 ? "H:mm:ss" : "m:ss";
+  return moment().startOf("day").seconds(seconds).format(token);
+}
+
+module.exports = { createActivities, getDataFromGroup, formatSeconds };
