@@ -1,7 +1,5 @@
 module.exports = {
-  purge: {
-    content: ["./src/site/**/*.njk"],
-  },
+  purge: false,
   target: "relaxed",
   prefix: "",
   important: false,

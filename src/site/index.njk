@@ -5,27 +5,16 @@ title: Leo's Running Log
 mainClasses: grid gap-4 grid-cols-2
 ---
 
-{% set activities = collections.activity | createActivities %}
-{% set currentMonthYearBlock = null %}
+{% set activitiesMonthYearGroup = collections.activity | activitiesByMonthAndYear %}
 
 <section class='my-12 col-span-2'>
   <h1 class='font-bold text-2xl'>Activities</h1>
   <hr class='bg-gray-400 w-3/4 mx-auto mt-12'>
 </section>
 
-{% for activity in activities %}
-
-  {# Get the month and year of the current activity #}
-  {% set activityMonthYearBlock = activity.date.format('MMMM Y') %}
-
-  {% if activityMonthYearBlock != currentMonthYearBlock %}
-    </ul>
-    </section>
-
-    {% set currentMonthYearBlock = activityMonthYearBlock %}
-
-    <section class='col-span-2 md:col-span-1'>
-      <h2 id='{{ activityMonthYearBlock }}' class='font-bold text-lg'>{{ activityMonthYearBlock }}</h2>
+{% for monthYearGroup in activitiesMonthYearGroup %}
+  <section class='col-span-2 md:col-span-1'>
+    <h2 id="{{ monthYearGroup.date.format('X') }}" class='font-bold text-lg'>{{ monthYearGroup.date.format('MMMM Y') }}</h2>
       <aside class='bg-white rounded p-4 shadow mt-6'>
         <div class='inline-block'>
           <p class='font-bold uppercase tracking-wide text-sm'>Month Details:</p>
@@ -33,23 +22,23 @@ mainClasses: grid gap-4 grid-cols-2
         </div>
         <ul class='grid grid-cols-2 gap-8'>
           <li class='bg-red-200 text-red-600 rounded p-2'>
-            <span class='font-semibold'>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'distance') }}</span>
+            <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('distance') }}</span>
             <span class='uppercase text-xs font-semibold'>mi</span> 
           </li>
           <li class='bg-blue-200 text-blue-600 rounded p-2'>
-            <span class='font-semibold'>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'time') | formatSeconds }}</span>
+            <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('time') | formatSeconds }}</span>
             <span class='uppercase text-xs font-semibold'>time</span> 
           </li>
         </ul>
       </aside>
-
-    <ul class='mt-6 p-4 border rounded'>
-  {% endif %}
-
-  <li>
-    <a class='underline text-blue-500 hover:text-blue-800 font-numeric-tabular' href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
-    <span class='font-numeric-tabular'>- {{ activity.distance.toFixed(2) }}</span>
-    <span class='uppercase text-xs font-semibold'>mi</span> 
-  </li>
-  
+      <ul class='mt-6 p-4 border rounded'>
+        {% for activity in monthYearGroup.activities %}
+          <li>
+            <a class='underline text-blue-500 hover:text-blue-800 font-numeric-tabular' href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
+            <span class='font-numeric-tabular'>- {{ activity.distance.toFixed(2) }}</span>
+            <span class='uppercase text-xs font-semibold'>mi</span> 
+          </li>
+        {% endfor %}
+      </ul>
+  </section>
 {% endfor %}
