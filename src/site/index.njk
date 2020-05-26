@@ -7,23 +7,25 @@ layout: layouts/base.njk
 <h1>Runs:</h1>
 
 {% set currentMonthYearBlock = null %}
-{{ activities | getDataFromGroup | log }}
 
-<ul>
-  {% for activity in activities %}
-    {# Get the month and year of the current activity #}
-    {% set activityMonth = activity.date.format('MMMM') %}
-    {% set activityYear = activity.date.format('Y') %}
-    {% set activityMonthYearBlock = activityMonth + ' ' + activityYear %}
+{% for activity in activities %}
+  {# Get the month and year of the current activity #}
+  {% set activityMonthYearBlock = activity.date.format('MMMM Y') %}
 
-    {# {% if activityMonth != currentMonth or activityYear != currentYear %} #}
-    {% if activityMonthYearBlock != currentMonthYearBlock %}
-      {% set currentMonthYearBlock = activityMonthYearBlock %}
+  {# {% if activityMonth != currentMonth or activityYear != currentYear %} #}
+  {% if activityMonthYearBlock != currentMonthYearBlock %}
+    </ul>
+    </section>
+    {% set currentMonthYearBlock = activityMonthYearBlock %}
+
+    <section>
       <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
-    {% endif %}
+      <h3>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock) }}</h3>
 
-    <li>
-      <a href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
-    </li>
-  {% endfor %}
-</ul>
+    <ul>
+  {% endif %}
+
+  <li>
+    <a href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
+  </li>
+{% endfor %}

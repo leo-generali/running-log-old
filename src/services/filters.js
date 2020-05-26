@@ -10,13 +10,16 @@ function createActivities(collection) {
     });
 }
 
-function getDataFromGroup(collection) {
-  return collection.reduce((accumulator, activity) => {
-    if (activity.date.format("Y") == 2020) {
-      console.log(activity.distance + accumulator);
-      accumulator = accumulator + activity.distance;
+function getDataFromGroup(collection, formatToken, timePeriod) {
+  let sum = 0;
+
+  collection.forEach((activity) => {
+    if (activity.date.format(formatToken) == timePeriod) {
+      sum = sum + activity.distance;
     }
-  }, +0);
+  });
+
+  return sum;
 }
 
 module.exports = { createActivities, getDataFromGroup };
