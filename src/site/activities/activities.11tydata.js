@@ -7,6 +7,9 @@ module.exports = {
 
   eleventyComputed: {
     formatted: {
+      time: (data) => {
+        return filters.formatSeconds(data.time);
+      },
       pace: (data) => {
         const pace = data.time / data.distance;
         return filters.formatSeconds(pace);

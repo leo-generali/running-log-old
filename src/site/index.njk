@@ -1,15 +1,20 @@
 ---
 layout: layouts/base.njk
+
+title: Leo's Running Log
+mainClasses: grid gap-4 grid-cols-2
 ---
 
 {% set activities = collections.activity | createActivities %}
 {% set currentMonthYearBlock = null %}
 
-<header class='my-12'>
+<header class='my-12 col-span-2'>
   <h1 class='font-bold text-2xl'>Activities</h1>
+  <hr class='bg-gray-400 w-3/4 mx-auto mt-12'>
 </header>
 
 {% for activity in activities %}
+
   {# Get the month and year of the current activity #}
   {% set activityMonthYearBlock = activity.date.format('MMMM Y') %}
 
@@ -17,28 +22,28 @@ layout: layouts/base.njk
     </ul>
     </section>
 
-    {% if currentMonthYearBlock != null %}
-      <hr class='bg-gray-300 h-px w-3/4 mx-auto my-12'>
-    {% endif %}
-
     {% set currentMonthYearBlock = activityMonthYearBlock %}
 
-    <section>
-    <h2 id='{{ activityMonthYearBlock }}' class='font-bold text-lg'>{{ activityMonthYearBlock }}</h2>
-    <aside class='bg-white rounded p-4 shadow mt-6'>
-      <p class='font-bold uppercase tracking-wide text-sm'>Month Details:</p>
-      <ul>
-        <li>
-          {{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'distance') }} miles
-        </li>
-        <li>
-          {{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'time') | formatSeconds }}
-        </li>
-      </ul>
-    </aside>
-    
-  
-    <ul class='mt-6'>
+    <section class='col-span-2 md:col-span-1'>
+      <h2 id='{{ activityMonthYearBlock }}' class='font-bold text-lg'>{{ activityMonthYearBlock }}</h2>
+      <aside class='bg-white rounded p-4 shadow mt-6'>
+        <div class='inline-block'>
+          <p class='font-bold uppercase tracking-wide text-sm'>Month Details:</p>
+          <hr class='mt-1 mb-4 w-full'>
+        </div>
+        <ul class='grid grid-cols-2 gap-8'>
+          <li class='bg-red-200 text-red-600 rounded p-2'>
+            <span class='font-semibold'>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'distance') }}</span>
+            <span class='uppercase text-xs font-semibold'>mi</span> 
+          </li>
+          <li class='bg-blue-200 text-blue-600 rounded p-2'>
+            <span class='font-semibold'>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'time') | formatSeconds }}</span>
+            <span class='uppercase text-xs font-semibold'>time</span> 
+          </li>
+        </ul>
+      </aside>
+
+    <ul class='mt-6 p-4 border rounded'>
   {% endif %}
 
   <li>
