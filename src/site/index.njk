@@ -8,10 +8,10 @@ mainClasses: grid gap-4 grid-cols-2
 {% set activities = collections.activity | createActivities %}
 {% set currentMonthYearBlock = null %}
 
-<header class='my-12 col-span-2'>
+<section class='my-12 col-span-2'>
   <h1 class='font-bold text-2xl'>Activities</h1>
   <hr class='bg-gray-400 w-3/4 mx-auto mt-12'>
-</header>
+</section>
 
 {% for activity in activities %}
 

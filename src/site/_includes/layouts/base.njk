@@ -1,14 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset='UTF-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1.0'>
   <title>{{ title or metadata.title }}</title>
   <style>{{ css | safe }}</style>
 </head>
-<body class='text-gray-900 leading-normal bg-gray-100'>
-  <main class='max-w-4xl mx-auto px-4 w-full {{ mainClasses }}'>
+<body class='text-gray-900 leading-normal bg-gray-100 flex flex-col min-h-screen'>
+  <nav>
+  </nav>
+  <main class='max-w-4xl mx-auto px-4 w-full flex-grow {{ mainClasses }}'>
     {{ content | safe }}
   </main>
+  <footer class='bg-white border-t'>
+    <p class='max-w-4xl mx-auto px-4 py-3 text-xs'>
+      Leo's Running Log - powered by <a href='https://www.11ty.dev/' class='text-blue-400 underline hover:text-blue-600'>11ty</a> and <a href='https://tailwindcss.com/' class='text-blue-400 underline hover:text-blue-600'>TailwindCSS</a>
+    </p>
+  </footer>
 </body>
 </html>
