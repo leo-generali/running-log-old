@@ -5,6 +5,10 @@ layout: layouts/base.njk
 {% set activities = collections.activity | createActivities %}
 {% set currentMonthYearBlock = null %}
 
+<header class='my-12'>
+  <h1 class='font-bold text-2xl'>Activities</h1>
+</header>
+
 {% for activity in activities %}
   {# Get the month and year of the current activity #}
   {% set activityMonthYearBlock = activity.date.format('MMMM Y') %}
@@ -13,12 +17,16 @@ layout: layouts/base.njk
     </ul>
     </section>
 
+    {% if currentMonthYearBlock != null %}
+      <hr class='bg-gray-300 h-px w-3/4 mx-auto my-12'>
+    {% endif %}
+
     {% set currentMonthYearBlock = activityMonthYearBlock %}
 
     <section>
-    <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
-    <aside>
-      <p>Month Details:</p>
+    <h2 id='{{ activityMonthYearBlock }}' class='font-bold text-lg'>{{ activityMonthYearBlock }}</h2>
+    <aside class='bg-white rounded p-4 shadow mt-6'>
+      <p class='font-bold uppercase tracking-wide text-sm'>Month Details:</p>
       <ul>
         <li>
           {{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock, 'distance') }} miles
@@ -30,7 +38,7 @@ layout: layouts/base.njk
     </aside>
     
   
-    <ul>
+    <ul class='mt-6'>
   {% endif %}
 
   <li>
