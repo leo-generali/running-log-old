@@ -5,6 +5,7 @@ class Activity {
     this.url = activity.url;
     this.title = activity.data.title || "Activity";
     this.date = moment(activity.data.date).utc();
+    this.distance = activity.data.distance;
   }
 }
 

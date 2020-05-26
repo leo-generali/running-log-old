@@ -6,8 +6,22 @@ layout: layouts/base.njk
 
 <h1>Runs:</h1>
 
+{% set currentMonthYearBlock = null %}
+{{ activities | getDataFromGroup | log }}
+
 <ul>
   {% for activity in activities %}
+    {# Get the month and year of the current activity #}
+    {% set activityMonth = activity.date.format('MMMM') %}
+    {% set activityYear = activity.date.format('Y') %}
+    {% set activityMonthYearBlock = activityMonth + ' ' + activityYear %}
+
+    {# {% if activityMonth != currentMonth or activityYear != currentYear %} #}
+    {% if activityMonthYearBlock != currentMonthYearBlock %}
+      {% set currentMonthYearBlock = activityMonthYearBlock %}
+      <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
+    {% endif %}
+
     <li>
       <a href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
     </li>
