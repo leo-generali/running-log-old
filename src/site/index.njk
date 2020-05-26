@@ -12,20 +12,21 @@ layout: layouts/base.njk
   {# Get the month and year of the current activity #}
   {% set activityMonthYearBlock = activity.date.format('MMMM Y') %}
 
-  {# {% if activityMonth != currentMonth or activityYear != currentYear %} #}
   {% if activityMonthYearBlock != currentMonthYearBlock %}
     </ul>
     </section>
+
     {% set currentMonthYearBlock = activityMonthYearBlock %}
 
     <section>
-      <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
-      <h3>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock) }}</h3>
-
+    <h2 class='font-bold'>{{ activityMonthYearBlock }}</h2>
+    <span>{{ activities | getDataFromGroup('MMMM Y', currentMonthYearBlock) }} miles</span>
+  
     <ul>
   {% endif %}
 
   <li>
     <a href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
   </li>
+  
 {% endfor %}

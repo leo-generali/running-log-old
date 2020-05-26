@@ -19,7 +19,7 @@ function getDataFromGroup(collection, formatToken, timePeriod) {
     }
   });
 
-  return sum;
+  return sum.toFixed(2);
 }
 
 module.exports = { createActivities, getDataFromGroup };
