@@ -15,23 +15,32 @@ mainClasses: grid gap-4 grid-cols-2
 {% for monthYearGroup in activitiesMonthYearGroup %}
   <section class='col-span-2 md:col-span-1'>
     <h2 id="{{ monthYearGroup.date.format('X') }}" class='font-bold text-lg'>{{ monthYearGroup.date.format('MMMM Y') }}</h2>
-      <aside class='bg-white rounded p-4 shadow mt-6'>
-        <div class='inline-block'>
-          <p class='font-bold uppercase tracking-wide text-sm'>Month Details:</p>
-          <hr class='mt-1 mb-4 w-full'>
-        </div>
-        <ul class='grid grid-cols-2 gap-8'>
-          <li class='bg-red-200 text-red-600 rounded p-2'>
-            <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('distance') }}</span>
-            <span class='uppercase text-xs font-semibold'>mi</span> 
-          </li>
-          <li class='bg-blue-200 text-blue-600 rounded p-2'>
-            <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('time') | formatSeconds }}</span>
-            <span class='uppercase text-xs font-semibold'>time</span> 
-          </li>
-        </ul>
-      </aside>
-      <ul class='mt-6 p-4 border rounded'>
+    <aside class='bg-white rounded p-4 shadow mt-6'>
+      <div class='inline-block'>
+        <p class='font-bold uppercase tracking-wide text-sm'>Month at a Glance:</p>
+        <hr class='mt-1 mb-4 w-full'>
+      </div>
+      <ul class='grid grid-cols-2 gap-4'>
+        <li class='bg-red-200 text-red-600 rounded p-2'>
+          <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('distance') }}</span>
+          <span class='uppercase text-xs font-semibold'>mi</span> 
+        </li>
+        <li class='bg-blue-200 text-blue-600 rounded p-2'>
+          <span class='font-semibold'>{{ monthYearGroup.activities | getDataFromGroup('time') | formatSeconds }}</span>
+          <span class='uppercase text-xs font-semibold'>time</span> 
+        </li>
+        <li class='bg-green-200 text-green-600 rounded p-2'>
+          <span class='font-semibold'>{{ monthYearGroup.activities | length }}</span>
+          <span class='uppercase text-xs font-semibold'>run{{ "s" if monthYearGroup.activities | length > 1 }}</span> 
+        </li>
+      </ul>
+    </aside>
+    <div class='mt-6 p-4 border rounded'>
+      <div class='inline-block'>
+        <p class='font-bold uppercase tracking-wide text-sm'>Activities:</p>
+        <hr class='mt-1 mb-4 w-full'>
+      </div>
+      <ul>
         {% for activity in monthYearGroup.activities %}
           <li>
             <a class='underline text-blue-500 hover:text-blue-800 font-numeric-tabular' href="{{ activity.url }}">{{ activity.date.format('MMMM DD, YYYY') }}</a>
@@ -40,5 +49,6 @@ mainClasses: grid gap-4 grid-cols-2
           </li>
         {% endfor %}
       </ul>
+    </div>
   </section>
 {% endfor %}
