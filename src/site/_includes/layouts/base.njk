@@ -7,7 +7,12 @@
   <style>{{ css | safe }}</style>
 </head>
 <body class='text-gray-900 leading-normal bg-gray-100 flex flex-col min-h-screen'>
-  <nav>
+  <nav class='bg-white shadow'>
+    <ul class='max-w-4xl mx-auto px-4 flex items-center h-12'>
+      <li>
+        <a href="/">Home</a>
+      </li>
+    </ul>
   </nav>
   <main class='max-w-4xl mx-auto px-4 w-full flex-grow {{ mainClasses }}'>
     {{ content | safe }}
