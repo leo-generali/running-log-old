@@ -8,20 +8,25 @@
     "clean": "rimraf dist/",
     "serve": "eleventy --serve --port=1234",
     "dev": "yarn clean && yarn serve",
-    "build": "yarn clean & NODE_ENV=production eleventy"
+    "build": "yarn clean & NODE_ENV=production eleventy",
+    "add-run": "node ./src/services/add-run.js",
+    "add-run:dev": "nodemon ./src/services/add-run.js"
   },
   "devDependencies": {
     "@11ty/eleventy": "^0.11.0",
     "@fullhuman/postcss-purgecss": "^2.2.0",
+    "chalk": "^4.0.0",
     "cssnano": "^4.1.10",
     "date-fns": "^2.14.0",
     "fast-glob": "^3.2.2",
     "gray-matter": "^4.0.2",
     "html-minifier": "^4.0.0",
+    "inquirer": "^7.1.0",
     "lodash": "^4.17.15",
     "markdown-it": "^11.0.0",
     "markdown-it-front-matter": "^0.2.1",
     "moment": "^2.26.0",
+    "nodemon": "^2.0.4",
     "postcss": "^7.0.30",
     "rimraf": "^3.0.2",
     "tailwindcss": "^1.4.6"
