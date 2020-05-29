@@ -1,8 +1,0 @@
----
-  date: undefined
-
-  time: 00:10:00
-  distance: 1
-  pace: 
-  type: easy
-  ---
